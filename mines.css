@@ -1,4 +1,4 @@
-body {More actions
+body {
   font-family: 'Segoe UI', Arial, sans-serif;
   background: #23262b;
   color: #fff;
@@ -302,11 +302,10 @@ body {More actions
     grid-template-rows: repeat(15, 18px);
     padding: 6px;
   }
+  .mines-tile {
+    width: 18px;
+    font-size: .82rem;
   }
-.mines-tile {
-  width: 84px;
-  height: 84px;
-}
   .controls-col {
     min-width: 120px;
   }
