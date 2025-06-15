@@ -1,11 +1,11 @@
-const BOARD_SIZE = 5;
+const BOARD_SIZE = 5;Add commentMore actions
 const GRID_SIZE = BOARD_SIZE * BOARD_SIZE;
 
 const GEM_SVG = `<svg width="18" height="18" viewBox="0 0 40 40" fill="none"><polygon points="20,4 36,14 32,34 8,34 4,14" fill="#23e165" stroke="#109a3d" stroke-width="2"/><polygon points="20,4 32,34 8,34" fill="#6affb7" opacity="0.7"/><polygon points="20,4 36,14 32,34" fill="#00b94d" opacity="0.5"/></svg>`;
 const BOMB_SVG = `<svg width="18" height="18" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="24" r="12" fill="#222" stroke="#555" stroke-width="2"/><rect x="17" y="7" width="6" height="7" rx="2" fill="#555"/><path d="M20 6 L20 2" stroke="#f5c542" stroke-width="2" stroke-linecap="round"/><circle cx="20" cy="2" r="1.5" fill="#f5c542"/><path d="M16 10 Q20 14 24 10" stroke="#888" stroke-width="1.5" fill="none"/></svg>`;
 
 const grid = document.getElementById('mines-grid');
-const wagerInput = document.getElementById('wager');More actions
+const wagerInput = document.getElementById('wager');
 const minesInput = document.getElementById('mines');
 const placeBetBtn = document.getElementById('place-bet');
 const cashoutBtn = document.getElementById('cashout');
@@ -62,8 +62,8 @@ document.addEventListener('click', e => {
 // -- GAME --
 function fillGrid() {
   grid.innerHTML = '';
-  grid.style.gridTemplateColumns = `repeat(${BOARD_SIZE}, 84px)`;
-  grid.style.gridTemplateRows = `repeat(${BOARD_SIZE}, 84px)`;
+  grid.style.gridTemplateColumns = `repeat(${BOARD_SIZE}, 28px)`;
+  grid.style.gridTemplateRows = `repeat(${BOARD_SIZE}, 28px)`;
   for (let i = 0; i < GRID_SIZE; i++) {
     const tile = document.createElement('button');
     tile.className = 'mines-tile';
