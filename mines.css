@@ -1,5 +1,11 @@
 html {
-  font-size: 200%;
+  font-size: 100%; /* default normal */
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 200%;
+  }
 }
 body {
   overflow-x: hidden;
