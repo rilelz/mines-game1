@@ -262,6 +262,7 @@ body {
   align-items: center;
   justify-content: center;
 
+  background: transparent;
   position: fixed;
   top: 0; left: 0;
   width: 100vw;
@@ -270,26 +271,20 @@ body {
   margin: 0; 
   padding: 0;
   animation: pop-cashout 0.33s cubic-bezier(.32,1.56,.48,.99);
-}
-
-.stake-cashout-result > .big-gem,
-.stake-cashout-result > .cashout-mult,
-.stake-cashout-result > .cashout-win {
-  position: relative;
-  z-index: 1001;
-  background: #22282b;
-  border-radius: 12px;
-  padding: 18px 22px 14px 22px;
-  box-shadow: 0 5px 0 0 #1b1d20;
   pointer-events: none; 
 }
 
 
-.stake-cashout-result > .big-gem,
-.stake-cashout-result > .cashout-mult {
-  padding: 12px 18px;    
-  display: inline-block; 
-  margin-bottom: 8px;   
+.stake-cashout-result .cashout-content {
+  pointer-events: auto; 
+  background: #22282b;
+  border-radius: 12px;
+  padding: 18px 22px 14px 22px;
+  box-shadow: 0 5px 0 0 #1b1d20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px; 
 }
 
 .big-gem {
