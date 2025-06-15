@@ -1,8 +1,8 @@
 const BOARD_SIZE = 5;
 const GRID_SIZE = BOARD_SIZE * BOARD_SIZE;
 
-const GEM_SVG = `<svg width="56" height="56" viewBox="0 0 40 40" fill="none"><polygon points="20,4 36,14 32,34 8,34 4,14" fill="#23e165" stroke="#109a3d" stroke-width="2"/><polygon points="20,4 32,34 8,34" fill="#6affb7" opacity="0.7"/><polygon points="20,4 36,14 32,34" fill="#00b94d" opacity="0.5"/></svg>`;
-const BOMB_SVG = `<svg width="56" height="56" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="24" r="12" fill="#222" stroke="#555" stroke-width="2"/><rect x="17" y="7" width="6" height="7" rx="2" fill="#555"/><path d="M20 6 L20 2" stroke="#f5c542" stroke-width="2" stroke-linecap="round"/><circle cx="20" cy="2" r="1.5" fill="#f5c542"/><path d="M16 10 Q20 14 24 10" stroke="#888" stroke-width="1.5" fill="none"/></svg>`;
+const GEM_SVG = `<svg width="48" height="48" viewBox="0 0 40 40" fill="none"><polygon points="20,4 36,14 32,34 8,34 4,14" fill="#23e165" stroke="#109a3d" stroke-width="2"/><polygon points="20,4 32,34 8,34" fill="#6affb7" opacity="0.7"/><polygon points="20,4 36,14 32,34" fill="#00b94d" opacity="0.5"/></svg>`;
+const BOMB_SVG = `<svg width="48" height="48" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="24" r="12" fill="#222" stroke="#555" stroke-width="2"/><rect x="17" y="7" width="6" height="7" rx="2" fill="#555"/><path d="M20 6 L20 2" stroke="#f5c542" stroke-width="2" stroke-linecap="round"/><circle cx="20" cy="2" r="1.5" fill="#f5c542"/><path d="M16 10 Q20 14 24 10" stroke="#888" stroke-width="1.5" fill="none"/></svg>`;
 
 const grid = document.getElementById('mines-grid');
 const wagerInput = document.getElementById('wager');
@@ -28,7 +28,6 @@ let payout = 0;
 let safeTiles = 0;
 let currentBet = 0;
 
-// --- BALANCE ---
 function updateBalanceDisplay() {
   balanceAmount.textContent = balance.toFixed(2);
 }
@@ -60,7 +59,6 @@ document.addEventListener('click', e => {
   }
 });
 
-// --- MINES GAME ---
 function fillGrid() {
   grid.innerHTML = '';
   for (let i = 0; i < GRID_SIZE; i++) {
@@ -92,7 +90,6 @@ function onTileClick(idx, tile) {
     cashoutBtn.disabled = true;
     messageDiv.textContent = "💥 You hit a mine! Game over.";
     messageDiv.className = "stake-message lose";
-    // lose bet
     currentBet = 0;
     updateBalanceDisplay();
   } else {
