@@ -363,7 +363,7 @@ body {
   }
   .mines-tile {
     width: 18px;
-    height: 18px
+    height: 18px;
     font-size: .82rem;
   }
   .controls-col {
