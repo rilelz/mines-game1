@@ -1,4 +1,5 @@
-const BOARD_SIZE = 5;Add commentMore actions
+// Large Stake-style Mines game JS
+const BOARD_SIZE = 15;
 const GRID_SIZE = BOARD_SIZE * BOARD_SIZE;
 
 const GEM_SVG = `<svg width="18" height="18" viewBox="0 0 40 40" fill="none"><polygon points="20,4 36,14 32,34 8,34 4,14" fill="#23e165" stroke="#109a3d" stroke-width="2"/><polygon points="20,4 32,34 8,34" fill="#6affb7" opacity="0.7"/><polygon points="20,4 36,14 32,34" fill="#00b94d" opacity="0.5"/></svg>`;
