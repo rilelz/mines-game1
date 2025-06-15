@@ -202,7 +202,7 @@ body {
   justify-content: center;
 }
 .mines-tile {
-  width: 28px;
+  width: 84px;
   aspect-ratio: 1 / 1;
   border-radius: 3px;
   border: none;
