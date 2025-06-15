@@ -200,8 +200,8 @@ body {
 .mines-grid {
   display: grid;
   gap: 6px;
-  grid-template-columns: repeat(15, 36px);
-  grid-template-rows: repeat(15, 36px);
+    grid-template-columns: repeat(15, 48px); 
+  grid-template-rows: repeat(15, 48px);
   margin-top: 10px;
   margin-bottom: 0.6em;
   background: #181a1f;
@@ -212,8 +212,8 @@ body {
   justify-content: center;
 }
 .mines-tile {
-  width: 36px;
-  height: 36px;
+  width: 84px;
+  height: 84px;
   border-radius: 3px;
   border: none;
   background: #282b30;
@@ -344,13 +344,13 @@ body {
 }
 @media (max-width: 1200px) {
   .mines-grid {
-    grid-template-columns: repeat(15, 18px);
-    grid-template-rows: repeat(15, 18px);
+      grid-template-columns: repeat(15, 48px);  
+  grid-template-rows: repeat(15, 48px);
     padding: 6px;
   }
   .mines-tile {
-    width: 18px;
-    height: 18px;
+    width: 32px;
+    height: 32px;
     font-size: .82rem;
   }
   .controls-col {
