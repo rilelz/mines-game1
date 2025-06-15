@@ -1,0 +1,193 @@
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #23262b;
+  color: #fff;
+  min-height: 100vh;
+  margin: 0;
+}
+.mines-container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #282c34;
+  border-radius: 25px;
+  box-shadow: 0 8px 32px #1119;
+  padding: 48px 32px 32px;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 2.2rem;
+  color: #23e165;
+  letter-spacing: 2px;
+}
+.balance-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #22282b;
+  border-radius: 14px;
+  padding: 14px 18px;
+  margin-bottom: 18px;
+  font-size: 1.18rem;
+  box-shadow: 0 2px 6px #0004;
+  gap: 16px;
+}
+.add-funds-dropdown {
+  position: relative;
+  display: inline-block;
+}
+#add-funds-btn {
+  background: #23e165;
+  color: #222;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5em 1.2em;
+  font-size: 1.04rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #23e16522;
+  margin-left: 10px;
+  transition: background .14s;
+}
+.add-funds-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  background: #23262b;
+  box-shadow: 0 6px 20px #111b;
+  border-radius: 10px;
+  margin-top: 5px;
+  min-width: 120px;
+  z-index: 5;
+  flex-direction: column;
+}
+.add-funds-menu button {
+  background: none;
+  color: #23e165;
+  border: none;
+  width: 100%;
+  padding: 12px 0;
+  text-align: left;
+  font-size: 1.09rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0;
+  transition: background 0.12s;
+}
+.add-funds-menu button:hover {
+  background: #23e16522;
+}
+.add-funds-dropdown.open .add-funds-menu {
+  display: flex;
+}
+.stake-controls {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.stake-controls label {
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.stake-controls input[type="number"] {
+  width: 90px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  border: 1.5px solid #444;
+  padding: 6px 8px;
+  background: #23262b;
+  color: #fff;
+  margin-top: 6px;
+}
+.stake-controls button {
+  background: #23e165;
+  color: #222;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8em 2.2em;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 3px 16px #23e16544;
+  transition: background .14s;
+}
+.stake-controls button:disabled {
+  background: #888;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.stake-info-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  margin: 32px 0 16px;
+  font-size: 1.2rem;
+  color: #fff;
+}
+.mines-grid {
+  display: grid;
+  gap: 20px;
+  justify-content: center;
+  margin: 2em 0 1.2em 0;
+  grid-template-columns: repeat(5, 88px);
+  user-select: none;
+}
+.mines-tile {
+  width: 88px;
+  aspect-ratio: 1 / 1;
+  border-radius: 24px;
+  border: none;
+  background: #353943;
+  color: #fff;
+  transition: box-shadow 0.24s, background 0.18s, transform 0.12s;
+  box-shadow: 0 4px 24px #111a, 0 2px 6px #0005 inset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.1rem;
+  position: relative;
+  will-change: transform;
+  outline: none;
+  overflow: hidden;
+}
+.mines-tile:active {
+  transform: scale(0.96);
+}
+.mines-tile.revealed {
+  animation: tilePop 0.19s;
+  background: #23e16517;
+  box-shadow: 0 0 0 3px #23e16585, 0 4px 24px #1119;
+}
+.mines-tile.mine {
+  background: #ff4545;
+  animation: minepop 0.17s;
+  box-shadow: 0 0 0 3px #ff454599, 0 4px 24px #111b;
+}
+@keyframes tilePop {
+  0% { transform: scale(1.14);}
+  80% { transform: scale(0.98);}
+  100% { transform: scale(1);}
+}
+@keyframes minepop {
+  0% { transform: scale(1.18);}
+  100% { transform: scale(1);}
+}
+.stake-message {
+  text-align: center;
+  margin: 18px 0 10px 0;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+.stake-message.win {
+  color: #23e165;
+}
+.stake-message.lose {
+  color: #ff4545;
+}
