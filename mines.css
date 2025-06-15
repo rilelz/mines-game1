@@ -31,6 +31,15 @@ body {
 .add-funds-dropdown {
   position: relative;
   display: inline-block;
+#game-container {
+  transform: scale(1.5);
+  transform-origin: top left; /* scale from top-left corner */
+  /* Optional: to prevent scaling overflow */
+  width: fit-content;
+  height: fit-content;
+}
+
+
 }
 #add-funds-btn {
   background: #23e165;
