@@ -1,12 +1,10 @@
-body {
   html {
   transform: scale(1.5);
   transform-origin: top left;
 }
-  {
-  overflow-x: hidden;
-}
 
+body {
+  overflow-x: hidden;
   font-family: 'Segoe UI', Arial, sans-serif;
   background: #23262b;
   color: #fff;
@@ -365,6 +363,7 @@ body {
   }
   .mines-tile {
     width: 18px;
+    height: 18px
     font-size: .82rem;
   }
   .controls-col {
