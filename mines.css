@@ -31,13 +31,15 @@ body {
 .add-funds-dropdown {
   position: relative;
   display: inline-block;
+} /* <-- Added missing closing brace here */
 #game-container {
   transform: scale(1.5);
   transform-origin: top left; /* scale from top-left corner */
   /* Optional: to prevent scaling overflow */
   width: fit-content;
   height: fit-content;
-}#credits {
+}
+#credits {
   position: fixed;
   bottom: 10px;
   left: 50%;
@@ -68,8 +70,6 @@ body {
   outline: none;
 }
 
-
-}
 #add-funds-btn {
   background: #23e165;
   color: #222;
@@ -340,10 +340,10 @@ body {
     grid-template-rows: repeat(15, 18px);
     padding: 6px;
   }
-.mines-tile {
-  width: 84px;
-  height: 84px;
-}
+  .mines-tile {
+    width: 84px;
+    height: 84px;
+  }
   .controls-col {
     min-width: 120px;
   }
