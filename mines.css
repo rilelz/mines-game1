@@ -1,4 +1,8 @@
 body {
+  html {
+  transform: scale(1.5);
+  transform-origin: top left;
+}
   font-family: 'Segoe UI', Arial, sans-serif;
   background: #23262b;
   color: #fff;
