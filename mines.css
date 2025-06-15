@@ -257,38 +257,33 @@ body {
   color: #e12e46;
 }
 .stake-cashout-result {
-  background: transparent; 
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); 
-  z-index: 1000;
-  margin: 0;
-  padding: 0;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-
-  pointer-events: none;
+  background: transparent !important; /* removed grey background */
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  margin: 0; 
+  padding: 0;
   animation: pop-cashout 0.33s cubic-bezier(.32,1.56,.48,.99);
+  pointer-events: none; /* allow clicks to pass through */
 }
 
 .stake-cashout-result > .big-gem,
 .stake-cashout-result > .cashout-mult,
 .stake-cashout-result > .cashout-win {
-  background: transparent;
+  position: relative;
+  z-index: 1001;
+  background: #22282b;
   border-radius: 12px;
   padding: 18px 22px 14px 22px;
-  box-shadow: none;
-  pointer-events: auto;
-  text-align: center;
-  margin: 6px 0; 
+  box-shadow: 0 5px 0 0 #1b1d20;
+  pointer-events: auto; /* keep interactive */
 }
-
-
 
 @keyframes pop-cashout {
   0% {transform: scale(0.8) rotate(-6deg);}
