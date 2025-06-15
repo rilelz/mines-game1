@@ -397,33 +397,15 @@ body {
   user-select: none;
   box-shadow: 0 2px 6px rgba(0,0,0,0.5);
   z-index: 1000;
-  display: block;
-  max-width: 90vw;
-  white-space: nowrap; /* prevents wrapping */
-  text-align: center;
+
+  /* LOCK SIZE */
+  width: 320px;           /* fixed width */
+  max-width: none;        /* prevent shrinking */
+  white-space: nowrap;    /* prevent text wrap */
+  overflow: hidden;       /* prevent overflow */
+  text-overflow: ellipsis; /* show ... if text is too long */
 }
 
-#credits a {
-  color: #7a7a7a;
-  text-decoration: none;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-  display: inline-block;
-}
-
-#credits a:hover,
-#credits a:focus {
-  transform: scale(1.15);
-  outline: none;
-}
-
-/* Smaller screens tweak */
-@media (max-width: 600px) {
-  #credits {
-    font-size: 11px;
-    padding: 6px 12px;
-  }
-}
 
 
 }
