@@ -62,8 +62,8 @@ document.addEventListener('click', e => {
 // -- GAME --
 function fillGrid() {
   grid.innerHTML = '';
-  grid.style.gridTemplateColumns = `repeat(${BOARD_SIZE}, 28px)`;
-  grid.style.gridTemplateRows = `repeat(${BOARD_SIZE}, 28px)`;
+  grid.style.gridTemplateColumns = `repeat(${BOARD_SIZE}, 84px)`;
+  grid.style.gridTemplateRows = `repeat(${BOARD_SIZE}, 84px)`;
   for (let i = 0; i < GRID_SIZE; i++) {
     const tile = document.createElement('button');
     tile.className = 'mines-tile';
