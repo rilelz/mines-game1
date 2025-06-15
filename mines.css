@@ -202,13 +202,12 @@ body {
   justify-content: center;
 }
 .mines-tile {
-  width: 84px;
-  height: 84px;
-  border-radius: 3px;
+  width: clamp(28px, 5vw, 84px);
+  height: clamp(28px, 5vw, 84px);
+  font-size: clamp(0.9rem, 1.5vw, 1.09rem);
   border: none;
   background: #282b30;
   color: #fff;
-  font-size: 1.09rem;
   font-weight: 700;
   cursor: pointer;
   display: flex;
