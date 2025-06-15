@@ -257,11 +257,7 @@ body {
   color: #e12e46;
 }
 .stake-cashout-result {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: rgba(34, 40, 43, 0.92);  /* overlay */
+  background: transparent; 
   position: fixed;
   top: 0; left: 0;
   width: 100vw;
@@ -270,6 +266,9 @@ body {
   margin: 0; 
   padding: 0;
   animation: pop-cashout 0.33s cubic-bezier(.32,1.56,.48,.99);
+
+
+  pointer-events: none; 
 }
 
 .stake-cashout-result > .big-gem,
@@ -277,11 +276,14 @@ body {
 .stake-cashout-result > .cashout-win {
   position: relative;
   z-index: 1001;
-  background: #22282b;
+
+  background: transparent; 
   border-radius: 12px;
   padding: 18px 22px 14px 22px;
-  box-shadow: 0 5px 0 0 #1b1d20;
+  box-shadow: none; 
+  pointer-events: auto;
 }
+
 
 @keyframes pop-cashout {
   0% {transform: scale(0.8) rotate(-6deg);}
