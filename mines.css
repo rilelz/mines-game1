@@ -31,15 +31,6 @@ body {More actions
 .add-funds-dropdown {
   position: relative;
   display: inline-block;
-#game-container {
-  transform: scale(1.5);
-  transform-origin: top left; /* scale from top-left corner */
-  /* Optional: to prevent scaling overflow */
-  width: fit-content;
-  height: fit-content;
-}
-
-
 }
 #add-funds-btn {
   background: #23e165;
@@ -211,7 +202,7 @@ body {More actions
   justify-content: center;
 }
 .mines-tile {
-  width: 84px;
+  width: 28px;
   aspect-ratio: 1 / 1;
   border-radius: 3px;
   border: none;
@@ -310,6 +301,7 @@ body {More actions
     grid-template-columns: repeat(15, 18px);
     grid-template-rows: repeat(15, 18px);
     padding: 6px;
+  }
   }
 .mines-tile {
   width: 84px;
