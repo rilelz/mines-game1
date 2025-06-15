@@ -1,4 +1,4 @@
-body {
+body {More actions
   font-family: 'Segoe UI', Arial, sans-serif;
   background: #23262b;
   color: #fff;
@@ -31,8 +31,16 @@ body {
 .add-funds-dropdown {
   position: relative;
   display: inline-block;
-} 
+#game-container {
+  transform: scale(1.5);
+  transform-origin: top left; /* scale from top-left corner */
+  /* Optional: to prevent scaling overflow */
+  width: fit-content;
+  height: fit-content;
+}
 
+
+}
 #add-funds-btn {
   background: #23e165;
   color: #222;
@@ -203,7 +211,7 @@ body {
   justify-content: center;
 }
 .mines-tile {
-  width: 28px; /* same as grid cell */
+  width: 84px;
   aspect-ratio: 1 / 1;
   border-radius: 3px;
   border: none;
@@ -303,10 +311,10 @@ body {
     grid-template-rows: repeat(15, 18px);
     padding: 6px;
   }
-  .mines-tile {
-    width: 84px;
-    height: 84px;
-  }
+.mines-tile {
+  width: 84px;
+  height: 84px;
+}
   .controls-col {
     min-width: 120px;
   }
@@ -336,36 +344,4 @@ body {
     padding: 13px 5px 8px 5px;
     background: #23262b;
   }
-  }
-#credits {
-  position: fixed;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #1a1a1a; /* darker grey than typical background */
-  padding: 8px 16px;
-  border-radius: 12px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  color: #7a7a7a;
-  user-select: none;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-  z-index: 1000;
-}
-
-#credits a {
-  color: #7a7a7a;
-  text-decoration: none;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-  display: inline-block;
-}
-
-#credits a:hover,
-#credits a:focus {
-  transform: scale(1.15);
-  outline: none;
-}
-
 }
