@@ -403,16 +403,17 @@ margin: 10px auto 0 auto;
 }
 
 #credits a {
-  color: #23e165;
+  color: inherit;
   text-decoration: none;
   font-weight: 600;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 #credits a:hover {
-  color: #38f07a;
-  transform: scale(1.06);
+  transform: scale(1.08);
+  cursor: pointer;
 }
+
 
 
 }
