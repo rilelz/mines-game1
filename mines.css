@@ -322,23 +322,28 @@ body {
 }
 @media (max-width: 1200px) {
   .mines-grid {
-    grid-template-columns: repeat(15, 18px);
-    grid-template-rows: repeat(15, 18px);
+    grid-template-columns: repeat(15, 28px);
+    grid-template-rows: repeat(15, 28px);
     padding: 6px;
   }
   .mines-tile {
-    width: 18px;
-    font-size: .82rem;
-  }
-  .controls-col {
-    min-width: 120px;
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
   }
 }
 @media (max-width: 900px) {
-  .stake-layout-centered {
-    flex-direction: column;
-    align-items: center;
+  .mines-grid {
+    grid-template-columns: repeat(15, 24px);
+    grid-template-rows: repeat(15, 24px);
   }
+  .mines-tile {
+    width: 24px;
+    height: 24px;
+    font-size: 0.85rem;
+  }
+}
+
   .mines-flex-row {
     flex-direction: column;
     align-items: center;
