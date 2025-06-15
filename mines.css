@@ -199,13 +199,13 @@ body {
 }
 .mines-grid {
   display: grid;
-  gap: 4px;
-  grid-template-columns: repeat(15, 28px);
-  grid-template-rows: repeat(15, 28px);
+  gap: 6px;
+  grid-template-columns: repeat(15, 36px);
+  grid-template-rows: repeat(15, 36px);
   margin-top: 10px;
   margin-bottom: 0.6em;
   background: #181a1f;
-  padding: 14px;
+  padding: 16px;
   border-radius: 9px;
   box-shadow: 0 8px 0 0 #181a1f;
   border: 2.5px solid #23262b;
