@@ -203,7 +203,7 @@ body {
   justify-content: center;
 }
 .mines-tile {
-  width: 84px;
+  width: 28px; /* same as grid cell */
   aspect-ratio: 1 / 1;
   border-radius: 3px;
   border: none;
