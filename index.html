@@ -2,45 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Stake Mines Game (HTML/CSS Demo)</title>
+  <title>Mines - Stake Style Replica</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="mines.css">
 </head>
 <body>
   <div class="mines-container">
-    <h1>Stake Mines</h1>
-    <div class="balance-bar">
-      <span><strong>Balance:</strong> $<span id="balance-amount">1000.00</span></span>
-      <div class="add-funds-dropdown">
-        <button id="add-funds-btn">Add Funds ▼</button>
-        <div class="add-funds-menu" id="add-funds-menu">
-          <button data-amount="100">$100</button>
-          <button data-amount="500">$500</button>
-          <button data-amount="1000">$1000</button>
+    <div class="stake-header">
+      <div class="balance-bar">
+        <span><strong>Balance:</strong> $<span id="balance-amount">1000.00</span></span>
+        <div class="add-funds-dropdown">
+          <button id="add-funds-btn">Add Funds ▼</button>
+          <div class="add-funds-menu" id="add-funds-menu">
+            <button data-amount="100">$100</button>
+            <button data-amount="500">$500</button>
+            <button data-amount="1000">$1000</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="stake-controls">
-      <label>
-        Bet Amount
-        <input type="number" id="wager" min="0.01" step="0.01" value="1.00" placeholder="0.00">
-      </label>
-      <label>
-        Mines
-        <input type="number" id="mines" min="1" max="24" value="5">
-      </label>
-      <button id="place-bet">Place Bet</button>
-      <button id="cashout" disabled>Cash Out</button>
-      <button id="reset" type="button">Reset</button>
+    <div class="stake-main">
+      <div class="stake-controls">
+        <label>
+          Bet Amount
+          <input type="number" id="wager" min="0.01" step="0.01" value="1.00" placeholder="0.00">
+        </label>
+        <label>
+          Mines
+          <input type="number" id="mines" min="1" max="24" value="5">
+        </label>
+        <button id="place-bet">Place Bet</button>
+        <button id="cashout" disabled>Cash Out</button>
+        <button id="reset" type="button">Reset</button>
+      </div>
+      <div class="stake-info-bar">
+        <span><strong>Bet:</strong> $<span id="info-bet">1.00</span></span>
+        <span><strong>Payout:</strong> $<span id="info-payout">0.00</span></span>
+        <span><strong>Mines:</strong> <span id="info-mines">5</span></span>
+        <span><strong>Safe Tiles:</strong> <span id="info-safe">0</span></span>
+      </div>
+      <div class="mines-game-area">
+        <div class="mines-grid" id="mines-grid"></div>
+        <div class="stake-message" id="stake-message"></div>
+      </div>
     </div>
-    <div class="stake-info-bar">
-      <span><strong>Bet:</strong> $<span id="info-bet">1.00</span></span>
-      <span><strong>Payout:</strong> $<span id="info-payout">0.00</span></span>
-      <span><strong>Mines:</strong> <span id="info-mines">5</span></span>
-      <span><strong>Safe Tiles:</strong> <span id="info-safe">0</span></span>
-    </div>
-    <div class="mines-grid" id="mines-grid"></div>
-    <div class="stake-message" id="stake-message"></div>
   </div>
   <script src="mines.js"></script>
 </body>
