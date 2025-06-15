@@ -196,6 +196,8 @@ body {
   align-items: center;
   justify-content: start;
   min-height: 80vh;
+  
+margin: 10px auto 0 auto;
 }
 .mines-grid {
   display: grid;
@@ -374,7 +376,7 @@ body {
     margin-top: 0;
     margin-bottom: 8px;
     width: 90vw;
-    max-width: 350px;
+    max-width: 300px;
   }
   .controls-group {
     flex-direction: row;
