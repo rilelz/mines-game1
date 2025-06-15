@@ -387,9 +387,7 @@ margin: 10px auto 0 auto;
 #credits {
   position: fixed;
   bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #1a1a1a; 
+  background-color: #1a1a1a; /* darker grey than typical background */
   padding: 8px 16px;
   border-radius: 12px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -414,6 +412,7 @@ margin: 10px auto 0 auto;
   transform: scale(1.15);
   outline: none;
 }
+
 
 
 
