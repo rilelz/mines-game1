@@ -202,12 +202,13 @@ body {
   justify-content: center;
 }
 .mines-tile {
-  width: clamp(28px, 5vw, 84px);
-  height: clamp(28px, 5vw, 84px);
-  font-size: clamp(0.9rem, 1.5vw, 1.09rem);
+  width: 84px;
+  height: 84px;
+  border-radius: 3px;
   border: none;
   background: #282b30;
   color: #fff;
+  font-size: 1.09rem;
   font-weight: 700;
   cursor: pointer;
   display: flex;
@@ -260,7 +261,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  /* Remove full overlay background */
   background: transparent;
   position: fixed;
   top: 0; left: 0;
@@ -270,12 +271,12 @@ body {
   margin: 0; 
   padding: 0;
   animation: pop-cashout 0.33s cubic-bezier(.32,1.56,.48,.99);
-  pointer-events: none; 
+  pointer-events: none; /* Allow clicks to pass through */
 }
 
-
+/* New wrapper for all cashout elements */
 .stake-cashout-result .cashout-content {
-  pointer-events: auto; 
+  pointer-events: auto; /* Enable clicks on this container */
   background: #22282b;
   border-radius: 12px;
   padding: 18px 22px 14px 22px;
@@ -283,12 +284,40 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px; 
+  gap: 8px; /* spacing between elements */
 }
 
 .big-gem {
   animation: gem-bounce 0.6s;
 }
+
+@keyframes pop-cashout {
+  0% {transform: scale(0.8) rotate(-6deg);}
+  75% {transform: scale(1.08) rotate(2deg);}
+  100% {transform: scale(1) rotate(0);}
+}
+
+@keyframes gem-bounce {
+  0% {transform: scale(0.6) translateY(18px);}
+  60% {transform: scale(1.1) translateY(-10px);}
+  100% {transform: scale(1) translateY(0);}
+}
+
+.cashout-mult {
+  font-size: 2.1rem;
+  color: #23e165;
+  text-shadow: 0 3px 14px #23e16590;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.cashout-win {
+  font-size: 1.45rem;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
 
 
 @keyframes pop-cashout {
@@ -330,36 +359,15 @@ body {
     width: 18px;
     font-size: .82rem;
   }
+  .controls-col {
+    min-width: 120px;
+  }
 }
-
 @media (max-width: 900px) {
   .stake-layout-centered {
     flex-direction: column;
     align-items: center;
   }
-  .mines-flex-row {
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
-  .controls-col {
-    flex-direction: row;
-    flex-wrap: wrap;
-    min-width: 0;
-    margin-top: 0;
-    margin-bottom: 8px;
-    width: 90vw;
-    max-width: 350px;
-  }
-  .controls-group {
-    flex-direction: row;
-    gap: 8px;
-    padding: 13px 5px 8px 5px;
-    background: #23262b;
-  }
-}
-
-
   .mines-flex-row {
     flex-direction: column;
     align-items: center;
