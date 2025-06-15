@@ -1,3 +1,6 @@
+html {
+  font-size: 150%;
+}
 body {
   overflow-x: hidden;
   font-family: 'Segoe UI', Arial, sans-serif;
