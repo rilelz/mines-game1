@@ -387,7 +387,7 @@ body {
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #1a1a1a; 
+  background-color: #1a1a1a;
   padding: 8px 16px;
   border-radius: 12px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -399,9 +399,25 @@ body {
   z-index: 1000;
   display: block;
   max-width: 90vw;
-  white-space: nowrap;
+  white-space: nowrap; /* prevents wrapping */
+  text-align: center;
 }
 
+#credits a {
+  color: #7a7a7a;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
+}
+
+#credits a:hover,
+#credits a:focus {
+  transform: scale(1.15);
+  outline: none;
+}
+
+/* Smaller screens tweak */
 @media (max-width: 600px) {
   #credits {
     font-size: 11px;
