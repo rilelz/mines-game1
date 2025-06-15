@@ -212,8 +212,8 @@ body {
   justify-content: center;
 }
 .mines-tile {
-  width: 84px;
-  height: 84px;
+  width: 36px;
+  height: 36px;
   border-radius: 3px;
   border: none;
   background: #282b30;
