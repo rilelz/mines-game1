@@ -281,6 +281,7 @@ body {
   border-radius: 12px;
   padding: 18px 22px 14px 22px;
   box-shadow: 0 5px 0 0 #1b1d20;
+  pointer-events: none; 
 }
 
 
