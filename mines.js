@@ -1,4 +1,3 @@
-// Stake-style Mines game JS (5x5 grid, fills space)
 const BOARD_SIZE = 5;
 const GRID_SIZE = BOARD_SIZE * BOARD_SIZE;
 
