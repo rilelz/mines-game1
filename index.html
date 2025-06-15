@@ -2,55 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Mines - Stake Style Replica</title>
+  <title>Mines - Large Grid Stake Style</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="mines.css">
 </head>
 <body>
-  <div class="stake-layout">
-    <aside class="stake-sidebar">
-      <div class="sidebar-box">
-        <div class="sidebar-label">Bet Amount</div>
-        <input type="number" id="wager" min="0.01" step="0.01" value="1.00" placeholder="0.00" class="sidebar-input">
-      </div>
-      <div class="sidebar-box">
-        <div class="sidebar-label">Mines</div>
-        <input type="number" id="mines" min="1" max="24" value="5" class="sidebar-input">
-      </div>
-      <div class="sidebar-box" style="margin-top: 18px;">
-        <button id="place-bet" class="sidebar-btn">Place Bet</button>
-        <button id="cashout" class="sidebar-btn" disabled>Cash Out</button>
-      </div>
-      <div class="sidebar-box" style="margin-top: 10px;">
-        <button id="random-tile" class="sidebar-btn-alt">Random Tile</button>
-        <button id="reset" class="sidebar-btn-alt">Reset</button>
-      </div>
-      <div class="sidebar-box balance-box">
-        <span>Balance:</span> <span id="balance-amount">$1000.00</span>
-        <div class="add-funds-dropdown">
-          <button id="add-funds-btn">+</button>
-          <div class="add-funds-menu" id="add-funds-menu">
-            <button data-amount="100">$100</button>
-            <button data-amount="500">$500</button>
-            <button data-amount="1000">$1000</button>
-          </div>
+  <!-- Balance at Top Center -->
+  <div class="top-balance-bar">
+    <div class="balance-box">
+      <span>Balance:</span> <span id="balance-amount">$1000.00</span>
+      <div class="add-funds-dropdown">
+        <button id="add-funds-btn">+</button>
+        <div class="add-funds-menu" id="add-funds-menu">
+          <button data-amount="100">$100</button>
+          <button data-amount="500">$500</button>
+          <button data-amount="1000">$1000</button>
         </div>
       </div>
-    </aside>
+    </div>
+  </div>
+
+  <div class="stake-layout stake-layout-centered">
+    <!-- Controls Next to Grid -->
     <main class="stake-main">
-      <div class="mines-game-area">
-        <div class="mines-grid" id="mines-grid"></div>
-        <div class="stake-message" id="stake-message"></div>
-        <div class="stake-cashout-result" id="stake-cashout-result" style="display:none;">
-          <div class="big-gem">
-            <svg width="100" height="100" viewBox="0 0 40 40" fill="none">
-              <polygon points="20,4 36,14 32,34 8,34 4,14" fill="#23e165" stroke="#109a3d" stroke-width="2"/>
-              <polygon points="20,4 32,34 8,34" fill="#6affb7" opacity="0.7"/>
-              <polygon points="20,4 36,14 32,34" fill="#00b94d" opacity="0.5"/>
-            </svg>
+      <div class="mines-flex-row">
+        <div class="controls-col">
+          <div class="controls-group">
+            <div class="sidebar-box">
+              <div class="sidebar-label">Bet Amount</div>
+              <input type="number" id="wager" min="0.01" step="0.01" value="1.00" placeholder="0.00" class="sidebar-input">
+            </div>
+            <div class="sidebar-box">
+              <div class="sidebar-label">Mines</div>
+              <input type="number" id="mines" min="1" max="119" value="15" class="sidebar-input">
+            </div>
+            <div class="sidebar-box">
+              <button id="place-bet" class="sidebar-btn">Place Bet</button>
+              <button id="cashout" class="sidebar-btn" disabled>Cash Out</button>
+            </div>
+            <div class="sidebar-box" style="margin-top:8px;">
+              <button id="random-tile" class="sidebar-btn-alt">Random Tile</button>
+              <button id="reset" class="sidebar-btn-alt">Reset</button>
+            </div>
           </div>
-          <div class="cashout-mult" id="cashout-mult"></div>
-          <div class="cashout-win" id="cashout-win"></div>
+        </div>
+        <div class="mines-game-area">
+          <div class="mines-grid" id="mines-grid"></div>
+          <div class="stake-message" id="stake-message"></div>
+          <div class="stake-cashout-result" id="stake-cashout-result" style="display:none;">
+            <div class="big-gem">
+              <svg width="100" height="100" viewBox="0 0 40 40" fill="none">
+                <polygon points="20,4 36,14 32,34 8,34 4,14" fill="#23e165" stroke="#109a3d" stroke-width="2"/>
+                <polygon points="20,4 32,34 8,34" fill="#6affb7" opacity="0.7"/>
+                <polygon points="20,4 36,14 32,34" fill="#00b94d" opacity="0.5"/>
+              </svg>
+            </div>
+            <div class="cashout-mult" id="cashout-mult"></div>
+            <div class="cashout-win" id="cashout-win"></div>
+          </div>
         </div>
       </div>
     </main>
