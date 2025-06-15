@@ -1,332 +1,69 @@
-<!DOCTYPE html>
+<!DOCTYPE html>More actions
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mines Game</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-  }
-  #mines-grid {
-    display: grid;
-    gap: 4px;
-    margin-top: 20px;
-  }
-  .mines-tile {
-    width: 80px;
-    height: 80px;
-    background: #eee;
-    border: 2px solid #ccc;
-    cursor: pointer;
-    font-size: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .mines-tile.revealed {
-    background: #c8facc;
-    cursor: default;
-  }
-  .mines-tile.mine {
-    background: #f88;
-  }
-  .stake-message {
-    margin-top: 10px;
-    height: 24px;
-  }
-  .stake-message.win {
-    color: green;
-  }
-  .stake-message.lose {
-    color: red;
-  }
-  #stake-cashout-result {
-    margin-top: 10px;
-    display: none;
-  }
-  #cashout-mult {
-    font-weight: bold;
-    font-size: 24px;
-  }
-  #cashout-win {
-    font-size: 20px;
-    color: green;
-  }
-  .add-funds-dropdown {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 10px;
-  }
-  #add-funds-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #eee;
-    border: 1px solid #ccc;
-    display: none;
-    padding: 5px;
-    z-index: 100;
-  }
-  .add-funds-dropdown.open #add-funds-menu {
-    display: block;
-  }
-  #add-funds-menu button {
-    display: block;
-    margin: 2px 0;
-    width: 100%;
-  }
-</style>
+  <meta charset="UTF-8">
+  <title>Mines - Large Grid Stake Style</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="mines.css">
 </head>
 <body>
-
-<div class="add-funds-dropdown">
-  <button id="add-funds-btn">Add Funds</button>
-  <div id="add-funds-menu">
-    <button data-amount="10">$10</button>
-    <button data-amount="25">$25</button>
-    <button data-amount="50">$50</button>
+  <!-- Balance at Top Center -->
+  <div class="top-balance-bar">
+    <div class="balance-box">
+      <span>Balance:</span> <span id="balance-amount">$1000.00</span>
+      <div class="add-funds-dropdown">
+        <button id="add-funds-btn">+</button>
+        <div class="add-funds-menu" id="add-funds-menu">
+          <button data-amount="100">$100</button>
+          <button data-amount="500">$500</button>
+          <button data-amount="1000">$1000</button>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 
-<div>
-  <label>Wager: $<input id="wager" type="number" step="0.01" min="0.01" value="10" style="width:80px" /></label>
-  <label>Mines: <input id="mines" type="number" min="1" max="24" value="3" style="width:50px" /></label>
-</div>
-
-<button id="place-bet">Place Bet</button>
-<button id="cashout" disabled>Cash Out</button>
-<button id="random-tile" disabled>Random Tile</button>
-
-<div id="mines-grid"></div>
-
-<div id="stake-message" class="stake-message"></div>
-
-<div id="stake-cashout-result">
-  <div id="cashout-mult"></div>
-  <div id="cashout-win"></div>
-</div>
-
-<div style="margin-top: 20px;">
-  Balance: <span id="balance-amount"></span>
-</div>
-
-<script>
-const BOARD_SIZE = 5;
-const GRID_SIZE = BOARD_SIZE * BOARD_SIZE;
-
-const GEM_SVG = `<svg width="48" height="48" viewBox="0 0 40 40" fill="none"><polygon points="20,4 36,14 32,34 8,34 4,14" fill="#23e165" stroke="#109a3d" stroke-width="2"/><polygon points="20,4 32,34 8,34" fill="#6affb7" opacity="0.7"/><polygon points="20,4 36,14 32,34" fill="#00b94d" opacity="0.5"/></svg>`;
-const BOMB_SVG = `<svg width="48" height="48" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="24" r="12" fill="#222" stroke="#555" stroke-width="2"/><rect x="17" y="7" width="6" height="7" rx="2" fill="#555"/><path d="M20 6 L20 2" stroke="#f5c542" stroke-width="2" stroke-linecap="round"/><circle cx="20" cy="2" r="1.5" fill="#f5c542"/><path d="M16 10 Q20 14 24 10" stroke="#888" stroke-width="1.5" fill="none"/></svg>`;
-
-const grid = document.getElementById('mines-grid');
-const wagerInput = document.getElementById('wager');
-const minesInput = document.getElementById('mines');
-const placeBetBtn = document.getElementById('place-bet');
-const cashoutBtn = document.getElementById('cashout');
-const randomBtn = document.getElementById('random-tile');
-const messageDiv = document.getElementById('stake-message');
-const balanceAmount = document.getElementById('balance-amount');
-const addFundsBtn = document.getElementById('add-funds-btn');
-const addFundsMenu = document.getElementById('add-funds-menu');
-const addFundsDropdown = addFundsBtn.parentElement;
-const cashoutResult = document.getElementById('stake-cashout-result');
-const cashoutMult = document.getElementById('cashout-mult');
-const cashoutWin = document.getElementById('cashout-win');
-
-let balance = 1000;
-let betPlaced = false;
-let revealed = [];
-let minesArr = [];
-let safeTiles = 0;
-let currentBet = 0;
-let currentPayout = 0;
-
-// -- BALANCE --
-function updateBalanceDisplay() {
-  balanceAmount.textContent = `$${balance.toFixed(2)}`;
-}
-function addFunds(amount) {
-  balance += amount;
-  updateBalanceDisplay();
-  messageDiv.textContent = `+ $${amount.toFixed(2)} added!`;
-  messageDiv.className = "stake-message win";
-  setTimeout(() => {
-    if (messageDiv.textContent.startsWith("+ $")) {
-      messageDiv.textContent = "";
-      messageDiv.className = "stake-message";
-    }
-  }, 1500);
-}
-addFundsBtn.addEventListener('click', () => {
-  addFundsDropdown.classList.toggle('open');
-});
-addFundsMenu.querySelectorAll('button').forEach(btn => {
-  btn.addEventListener('click', e => {
-    const amt = parseFloat(btn.getAttribute('data-amount'));
-    addFunds(amt);
-    addFundsDropdown.classList.remove('open');
-  });
-});
-document.addEventListener('click', e => {
-  if (!addFundsDropdown.contains(e.target)) {
-    addFundsDropdown.classList.remove('open');
-  }
-});
-
-// -- GAME --
-function fillGrid() {
-  grid.innerHTML = '';
-  grid.style.gridTemplateColumns = `repeat(${BOARD_SIZE}, 84px)`;
-  grid.style.gridTemplateRows = `repeat(${BOARD_SIZE}, 84px)`;
-  for (let i = 0; i < GRID_SIZE; i++) {
-    const tile = document.createElement('button');
-    tile.className = 'mines-tile';
-    tile.dataset.index = i;
-    tile.disabled = !betPlaced;
-    tile.addEventListener('click', () => onTileClick(i, tile));
-    grid.appendChild(tile);
-  }
-}
-fillGrid();
-
-function onTileClick(idx, tile) {
-  if (!betPlaced || tile.classList.contains('revealed')) return;
-  const isMine = minesArr.includes(idx);
-  tile.classList.add('revealed');
-  if (isMine) {
-    tile.classList.add('mine');
-    tile.innerHTML = BOMB_SVG;
-    document.querySelectorAll('.mines-tile').forEach((t, j) => {
-      if (minesArr.includes(j)) {
-        t.classList.add('revealed', 'mine');
-        t.innerHTML = BOMB_SVG;
-      }
-      t.disabled = true;
-    });
-    betPlaced = false;
-    cashoutBtn.disabled = true;
-    randomBtn.disabled = true;
-    messageDiv.textContent = "💥 You hit a mine! Game over.";
-    messageDiv.className = "stake-message lose";
-    currentBet = 0;
-    currentPayout = 0;
-    updateBalanceDisplay();
-    setTimeout(resetToStart, 1500);
-  } else {
-    tile.innerHTML = GEM_SVG;
-    safeTiles++;
-    tile.disabled = true;
-  }
-  revealed.push(idx);
-}
-
-function calcPayout() {
-  const mines = parseInt(minesInput.value, 10);
-  const safeClicked = safeTiles;
-  let payout = 1;
-  for (let i = 0; i < safeClicked; i++) {
-    payout *= (GRID_SIZE - i - mines) / (GRID_SIZE - i);
-  }
-  payout = payout === 1 ? 1 : Math.max(1.01, 1 / payout);
-  return payout;
-}
-
-function onPlaceBet() {
-  const wager = parseFloat(wagerInput.value);
-  const mines = parseInt(minesInput.value, 10);
-  if (isNaN(wager) || wager < 0.01 || isNaN(mines) || mines < 1 || mines >= GRID_SIZE) {
-    messageDiv.textContent = "Enter a valid bet and mine count.";
-    messageDiv.className = "stake-message lose";
-    return;
-  }
-  if (wager > balance) {
-    messageDiv.textContent = "Insufficient balance!";
-    messageDiv.className = "stake-message lose";
-    return;
-  }
-  betPlaced = true;
-  placeBetBtn.disabled = true;
-  cashoutBtn.disabled = false;
-  randomBtn.disabled = false;
-  wagerInput.disabled = true;
-  minesInput.disabled = true;
-  messageDiv.textContent = "";
-  messageDiv.className = "stake-message";
-  revealed = [];
-  safeTiles = 0;
-  currentBet = wager;
-  balance -= wager;
-  updateBalanceDisplay();
-  minesArr = [];
-  while (minesArr.length < mines) {
-    const pos = Math.floor(Math.random() * GRID_SIZE);
-    if (!minesArr.includes(pos)) minesArr.push(pos);
-  }
-  fillGrid();
-  cashoutResult.style.display = "none";
-}
-
-function onCashout() {
-  if (!betPlaced) return;
-  betPlaced = false;
-  placeBetBtn.disabled = false;
-  cashoutBtn.disabled = true;
-  randomBtn.disabled = true;
-  wagerInput.disabled = false;
-  minesInput.disabled = false;
-
-  const payout = calcPayout();
-  currentPayout = payout;
-  const winnings = currentBet * payout;
-
-  cashoutMult.textContent = `${payout.toFixed(2)}x`;
-  cashoutWin.textContent = `+$${winnings.toFixed(2)}`;
-  cashoutResult.style.display = "flex";
-  messageDiv.textContent = "";
-  messageDiv.className = "stake-message";
-
-  balance += winnings;
-  updateBalanceDisplay();
-
-  currentBet = 0;
-
-  document.querySelectorAll('.mines-tile').forEach(t => t.disabled = true);
-}
-
-function resetToStart() {
-  betPlaced = false;
-  revealed = [];
-  safeTiles = 0;
-  minesArr = [];
-  wagerInput.disabled = false;
-  minesInput.disabled = false;
-  placeBetBtn.disabled = false;
-  cashoutBtn.disabled = true;
-  randomBtn.disabled = true;
-  messageDiv.textContent = "";
-  messageDiv.className = "stake-message";
-  cashoutResult.style.display = "none";
-  fillGrid();
-}
-
-function onRandomTile() {
-  if (!betPlaced) return;
-  const unrevealed = [];
-  document.querySelectorAll('.mines-tile').forEach((t, i) => {
-    if (!t.classList.contains('revealed')) unrevealed.push({t, i});
-  });
-  if (unrevealed.length === 0) return;
-  const pick = unrevealed[Math.floor(Math.random() * unrevealed.length)];
-  pick.t.click();
-}
-
-placeBetBtn.addEventListener('click', onPlaceBet);
-cashoutBtn.addEventListener('click', onCashout);
-randomBtn.addEventListener('click', onRandomTile);
-
-updateBalanceDisplay();
-</script>
-
+  <div class="stake-layout stake-layout-centered">
+    <!-- Controls Next to Grid -->
+    <main class="stake-main">
+      <div class="mines-flex-row">
+        <div class="controls-col">
+          <div class="controls-group">
+            <div class="sidebar-box">
+              <div class="sidebar-label">Bet Amount</div>
+              <input type="number" id="wager" min="0.01" step="0.01" value="1.00" placeholder="0.00" class="sidebar-input">
+            </div>
+            <div class="sidebar-box">
+              <div class="sidebar-label">Mines</div>
+              <input type="number" id="mines" min="1" max="119" value="15" class="sidebar-input">
+            </div>
+            <div class="sidebar-box">
+              <button id="place-bet" class="sidebar-btn">Place Bet</button>
+              <button id="cashout" class="sidebar-btn" disabled>Cash Out</button>
+            </div>
+            <div class="sidebar-box" style="margin-top:8px;">
+              <button id="random-tile" class="sidebar-btn-alt">Random Tile</button>
+              <button id="reset" class="sidebar-btn-alt">Reset</button>
+            </div>
+          </div>
+        </div>
+        <div class="mines-game-area">
+          <div class="mines-grid" id="mines-grid"></div>
+          <div class="stake-message" id="stake-message"></div>
+          <div class="stake-cashout-result" id="stake-cashout-result" style="display:none;">
+            <div class="big-gem">
+              <svg width="100" height="100" viewBox="0 0 40 40" fill="none">
+                <polygon points="20,4 36,14 32,34 8,34 4,14" fill="#23e165" stroke="#109a3d" stroke-width="2"/>
+                <polygon points="20,4 32,34 8,34" fill="#6affb7" opacity="0.7"/>
+                <polygon points="20,4 36,14 32,34" fill="#00b94d" opacity="0.5"/>
+              </svg>
+            </div>
+            <div class="cashout-mult" id="cashout-mult"></div>
+            <div class="cashout-win" id="cashout-win"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="mines.js"></script>
 </body>
 </html>
